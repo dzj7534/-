@@ -1,0 +1,126 @@
+<!DOCTYPE >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script>
+
+</script>
+<head>
+<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8" />
+<title>大学</title>
+<link rel="stylesheet" type="text/css" href="./css/toushuindex.css"/>
+
+<script type="text/javascript" src="./js/tousu.js"></script>
+<!-- <script src="./modules/jsencrypt.js?v=v2"></script> -->
+</head>
+
+<body>
+<!--头部-->
+
+
+<div class="con">
+<div class="center">
+    <div class="jbxz_weizhi rightTit">
+        <a href="/index.do">首页</a>>
+        <a id="headerState1" href="/shouye.html">我要举报</a>
+        <a href="#">投诉</a>
+    </div>
+    <div class="jbxz_nr">
+        <div class="jbxz_nrbt">投诉</div>
+        <div class="jbxz_nrts">
+            您正在向
+                                <font>大学信息反馈网站</font>
+                                提交投诉
+        </div>
+        <div class="jbdw_xx">投诉信息</div>
+        <form id="tousu" accept-charset="UTF-8" name="tousu" action="tousu.do" method="post" target="_self" >
+
+            <table class="jbdw_txxx">
+                <tr>
+                    <td class="jbdw_txl">问题分类：</td>
+                    <td>
+                        <input type="radio" name="wtfl" value="人文生活" style=" width:20px; border:none; vertical-align:middle;" /><span style=" line-height:28px;">人文生活</span>
+                        <input type="radio" name="wtfl" value="校园环境" style=" width:18px; border:none; vertical-align:middle;" /><span style=" line-height:28px;">校园环境</span>
+                        <input type="radio" name="wtfl" value="学习问题" style=" width:18px; border:none; vertical-align:middle; margin-left:25px; " /><span style=" line-height:28px; text-align:center;">学习问题</span>
+                        <input type="radio" name="wtfl" value="安全问题" style=" width:18px; border:none; vertical-align:middle; margin-left:25px; " /><span style=" line-height:28px; text-align:center;">安全问题</span>
+                        <input type="radio" name="wtfl" value="其它" style=" width:18px; border:none; vertical-align:middle; margin-left:25px; " /><span style=" line-height:28px; text-align:center;">其它</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="jbdw_txl"><font>*</font>主要问题：</td>
+                    <td>
+                        <textarea name="zywt" id="zywt" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="jbdw_xx">举报人信息</div>
+            <table class="jbdw_txxx">
+                <tr>
+                    <td class="jbdw_txl">学号</td>
+                    <td><input id="xuehao" name="xuehao" type="text" /></td>
+                </tr>
+            </table>
+            <div class="jbdw_but">
+                <input type="submit" style="cursor:pointer;" class="jbdw_tjbut" value="提&nbsp;&nbsp;&nbsp;&nbsp;交">
+
+<!--                <a onclick="formsubmitjbj()" style="cursor:pointer;" class="jbdw_tjbut">提交</a>-->
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</div>
+<!--底部-->
+<div class="bot" style=" text-align:center ; ">
+<div class="bot-con" style=" width:36%; text-align:center;">
+<p class="bot-con-t" style=" width:600px;">&nbsp;&nbsp;&nbsp;友情链接&nbsp;|&nbsp;<a href="http://www.12380.gov.cn"   target="_blank"  style="color:#a40009;">学校官网</a>|&nbsp;<a href="http://www.bjdj.gov.cn/" target="_blank" style="color:#a40009;">北京组工</a></p>
+
+<div style=" width:560px;">
+    <!--<div style=" width:60px; float:left">
+        <script type="text/javascript">
+            document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript src='http://dcs.conac.cn/js/01/000/0000/60425346/CA010000000604253460004.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+        </div>-->
+    <div class="bot-con-b">
+
+        <a href="http://bszs.conac.cn/sitename?method=show&id=3390E2262F860171E053012819AC1EB2" target="_blank">
+
+            <img class="bot-con-l" src="./12380jbxx/images/icon_02.png">
+        </a>
+        <div class="bot-con-r" style=" text-align: left;line-height:20px;">
+            <p>大学信息反馈网站</p>
+
+            <p>101&102公司技术支持</p>
+            <p>地址：沈阳工业大学C7-101&102</p>
+
+            <p>电话：123456789&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：111111</p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+    function formsubmitjbj() {
+        var paras = ''
+        var myajax = new Ajax.Request(
+            url,
+            {
+                method: 'get', parameters: paras, onComplete: function (request) {
+                {
+                    let xuehao;
+                    document.getElementById("xuehao").value = xuehao;
+                    let zywt;
+                    document.getElementById("zywt").value = zywt;    //主要问题
+                    let wtfl;
+                    document.getElementById("wtfl").value = wtfl;  //问题分类
+                }
+
+                }
+            }
+        )
+
+    }
+</script>
+</html>

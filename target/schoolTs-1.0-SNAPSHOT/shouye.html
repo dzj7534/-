@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>校园投诉系统</title>
+<link rel="stylesheet" type="text/css" href="./css/index.css" />
+<script src="./js/zns_move.js"></script>
+<script src="./js/PIE.js"></script>
+<script src="./js/zns_img.js"></script>
+</head>
+
+<body>
+<!--头部-->
+<script>
+function AddFavorite() {
+//url超链接
+var sTitle = "校园投诉系统";
+var sUrl = "";
+try {
+  window.external.addFavorite(sUrl, sTitle);
+}
+catch (e) {
+  try {
+      window.sidebar.addPanel(sTitle, sUrl, "");
+  }
+  catch (e) {
+      alert("抱歉，您所使用的浏览器无法完成此操作，请使用Ctrl+D进行添加");
+  }
+}
+
+}
+</script>
+<div class="had">
+<div class="ban">
+<div class="ban-bot">
+  <span class="ban-btn ban-l" style=" margin-left:70px">
+      <a href="/index.do">返回首页</a>
+  </span>
+  <span class="ban-btn ban-r" style=" margin-left:70px">
+      <!--<a href="#" onClick="window.external.addFavorite('http://www.bj12380.gov.cn/','中共北京12380举报网站')">收藏我们</a>-->
+      <a href="#" onClick="AddFavorite()">收藏我们</a>
+  </span>
+</div>
+</div>
+
+</div>
+
+
+<!--内容-->
+
+
+<div class="con">
+  <div class="center">
+      <!--左侧-->
+      <!--<a onclick="wyjb()" href="/bdcms/jbxzindex.do"><img style="margin-top:30px; width: 220px;height: 130px;" src="/12380jbxx/images/wyjb.png" /></a>
+<a href="/bdcms/fkcxindex.do"><img style="margin-top:30px; width: 220px;height: 130px;" src="/12380jbxx/images/fkcx.png" /></a>
+<a onclick="hjjl()" href="/bdcms/jbxzindex.do"><img style="margin-top:30px; width: 220px;height: 130px;" src="/12380jbxx/images/hjjl.png" /></a>-->
+<div class="center-l">
+<div class="center-l-h">
+  <div id="wyjb1" class="leftItem leftItemBackground" style="position: relative; line-height:120px;">
+      <a href="tousu.html" style="color: #fff;position: absolute;padding:0% 0px 0px 26%;">我要举报</a>
+  </div>
+  <div id="wyjb2" class="leftItem" style="position: relative; line-height:120px;">
+      <a href="tousu.html" style="color: rgb(204,46,45);position: absolute;padding:0% 0px 0px 26%;">我要举报</a>
+  </div>
+
+
+  <div id="hjjl3" style="position: relative;font-family: myFont;font-weight: bold;border-radius: 8px;width: 180px;
+border: 1px solid rgb(211,81,80); margin-top: 30px;
+margin-left:50px;">
+      <div id="zytd" class="leftItemBox" style="position: relative;  background:#e36758; background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(240, 142, 127)), to(rgb(220,73,56)));
+  background: -webkit-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+  background: -moz-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%3);
+  background: -ms-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+  background: -o-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+  background: linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+  -pie-background: linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr = #e05d4d, endColorstr = #eb8071); ">
+          <a href="/bdcms/jbxzindex.do?channel=2" style=" color: #fff;position: absolute;padding:19% 0px 0px 9%;text-align:center;">
+              换届风气举报 <br />
+              专用通道
+          </a>
+      </div>
+      <div style="background-color: rgb(242,184,177); height: 40px;
+      line-height: 40px;
+      width: 100%;
+      text-align: center;font-size: 20px;
+      color: rgb(204,46,45);">换届纪律</div>
+      <div id="ten" class="leftItemBoxDiv"><a style="color: rgb(204,46,45);" href="/bdcms/jbotenprohibit.do?channel=2">十严禁</a></div>
+      <img src="./images/xian.png" alt="" style="width: 170px; float: left;">
+      <div id="four" class="leftItemBoxDiv"><a style="color: rgb(204,46,45);" href="/bdcms/jbofournotallow.do?channel=2">四个不准</a></div>
+  </div>
+
+  <div id="fkcx2" style=" margin-right: 20px;
+      border-radius: 8px;border: 1px solid rgb(211,81,80);background: #fff;
+position: relative;width: 180px;font-family: myFont;
+      height: 100px;line-height:100px;display: flex;color: rgb(204,46,45);
+      font-weight: bold;margin-left:50px;margin-top:25px;font-size: 20px;
+      ">
+      <a href="/bdcms/fkcxindex.do" style="color: rgb(204,46,45);position: absolute;padding-left:27%;">反馈查询</a>
+  </div>
+
+  <div id="fkcx1" class="leftItem" style="line-height:120px;position: relative;">
+      <a href="/bdcms/fkcxindex.do" style="color: rgb(204,46,45);position: absolute;padding-left:27%;">反馈查询</a>
+  </div>
+
+  <div id="hjjl1" class="leftItem" style="position: relative;background:#e36758; background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(240, 142, 127)), to(rgb(220,73,56)));
+background: -webkit-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+background: -moz-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%3);
+background: -ms-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+background: -o-linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+background: linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);
+-pie-background: linear-gradient(bottom right,  rgb(240, 142, 127) 0%, rgba(220,73,56, .9) 100%);">
+      <a href="/bdcms/jbxzindex.do?channel=2" style=" color: #fff;position: absolute;padding:13% 0px 0px 15%;">换届风气举报<br />专用通道</a>
+  </div>
+  <div id="hjjl2" class="leftItem">
+      <a href="/bdcms/jbxzindex.do?channel=2" style=" color: rgb(204,46,45);">换届风气举报专用通道</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+var query = window.location.search.substring(1);
+var vars = query.split("&");
+var channel = vars[0].split("=");
+if (channel[1] == "1") {
+document.getElementById("hjjl1").style.display = "none";
+document.getElementById("hjjl2").style.display = "none";
+document.getElementById("wyjb2").style.display = "none";
+document.getElementById("hjjl3").style.display = "none";
+document.getElementById("fkcx2").style.display = "none";
+}
+else if (channel[1] == "2") {
+document.getElementById("hjjl2").style.display = "none";
+document.getElementById("hjjl1").style.display = "none";
+document.getElementById("wyjb1").style.display = "none";
+document.getElementById("wyjb2").style.display = "none";
+document.getElementById("fkcx1").style.display = "none";
+}
+else {
+document.getElementById("hjjl2").style.display = "none";
+document.getElementById("wyjb1").style.display = "none";
+document.getElementById("hjjl3").style.display = "none";
+document.getElementById("fkcx2").style.display = "none";
+}
+PIE.attach(document.getElementById("zytd"));
+PIE.attach(document.getElementById("wyjb2"));
+PIE.attach(document.getElementById("wyjb1"));
+PIE.attach(document.getElementById("hjjl2"));
+PIE.attach(document.getElementById("hjjl1"));
+PIE.attach(document.getElementById("hjjl3"));
+PIE.attach(document.getElementById("fkcx2"));
+PIE.attach(document.getElementById("fkcx1"));
+
+</script>
+  <!--右侧-->
+  <div class="center-r">
+<div class="lunboContainer" id = "img">
+<div class="lunboImg">
+      <img src="./images/bg.png" class="active"/>
+  </div>
+  <div class="lunboNav" style="">
+      <div style="font-size: 20px;text-align:center;padding-top:80px;color:#000;font-weight:bold;">
+          欢迎进入校园投诉系统
+      </div>
+      <div style="font-size: 17px;line-height: 35px;text-align:center;text-indent: 5em;padding-top:180px;">
+          本举报网站主要受理反映学生校园生活中以学生身份无法解决的问题,<br> 以及学习,校园环境和生活等方面问题的举报。
+          <p style="font-size: 17px;padding:50px 0px 0px 80px;float:left;">感谢您对我们的信任和支持！</p>    
+      </div>
+      
+      <!--<ul id = "lunboli">
+<li class="activeli" id="li0"><a href="javascript:"></a></li>
+<li id="li1"><a href="javascript:"></a></li>
+<li id="li2"><a href="javascript:"></a></li>
+<li id="li3"><a href="javascript:"></a></li>
+</ul>-->
+</div>
+  <!--<a class="navController left" id = "prev" href="javascript:">＜</a>-->
+  <!--<a class="navController right" id = "next" href="javascript:">＞</a>-->
+</div>
+</div>
+  <!--nwews-->
+  <!-- 2021-06-01 xxn 去掉四个大类 -->
+   
+</div>
+</div>
+
+<!--底部-->
+<!--底部-->
+
+<div class="bot" style=" text-align:center ; ">
+<div class="bot-con" style=" width:36%; text-align:center;">
+<p class="bot-con-t" style=" width:600px;">&nbsp;&nbsp;&nbsp;友情链接&nbsp;|&nbsp;<a href="http://www.12380.gov.cn"   target="_blank"  style="color:#a40009;">学校官网</a>|&nbsp;<a href="https://www.sut.edu.cn/" target="_blank" style="color:#a40009;">北京组工</a></p>
+
+<div style=" width:560px;">
+  <!--<div style=" width:60px; float:left">
+      <script type="text/javascript">
+          document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript src='http://dcs.conac.cn/js/01/000/0000/60425346/CA010000000604253460004.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+      </div>-->
+  <div class="bot-con-b">
+
+      <a href="http://bszs.conac.cn/sitename?method=show&id=3390E2262F860171E053012819AC1EB2" target="_blank">
+
+          <img class="bot-con-l" src="./images/icon_02.png">
+      </a>
+      <div class="bot-con-r" style=" text-align: left;line-height:20px;">
+          <p>校园投诉系统</p>
+
+          <p>沈阳铁西经济开发区111号举报中心承建 &nbsp;&nbsp;&nbsp;C7-101&102有限公司技术支持</p>
+          <p>地址：沈阳铁西经济开发区111号C7-101&102</p>
+
+          <p>电话： 123456789&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：1111111</p>
+      </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+</body>
+<script>
+PIE.attach(document.getElementById("wyjb2"));
+PIE.attach(document.getElementById("wyjb1"));
+PIE.attach(document.getElementById("hjjl2"));
+PIE.attach(document.getElementById("hjjl1"));
+PIE.attach(document.getElementById("hjjl3"));
+PIE.attach(document.getElementById("fkcx2"));
+PIE.attach(document.getElementById("fkcx1"));
+</script>
+</html>

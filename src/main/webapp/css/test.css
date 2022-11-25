@@ -1,0 +1,46 @@
+.space-left[data-v-1c9150a9] {
+    width: 140px;
+    min-width: 140px;
+    background-color: rgba(255,255,255,0.8);
+  }
+.container {
+    position: fixed;
+    left: 50%;
+    top: calc(50% + 18px);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    height: calc(100vh - 56px);
+    margin: 0 auto;
+    width: 1143px;
+    max-width: 1143px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+#link-message-container[data-v-1c9150a9] {
+    width: 100%;
+  }  
+body {
+    background: url(./infocenterbg.a1a0d1521.jpg) top/cover no-repeat fixed;
+    font-size: 12px;
+    line-height: 12px;
+    color: #666;
+    padding: 0;
+    margin: 0;
+  }
+.excel{
+  width: 1080px;
+  margin: 0 auto;
+  background: #f2dddf;
+  height: 41px;
+  line-height: 41px;
+  font-size: 16px;
+  color: #000
+}

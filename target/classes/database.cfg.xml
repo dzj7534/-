@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--	<databases>-->
+    <!--		<database name="sql">-->
+    <!--			<property name="driver">com.mysql.jdbc.Driver</property>-->
+    <!--			<property name="url">jdbc:mysql://10.10.155.101:3306/pan</property>-->
+    <!--			<property name="user">root</property>-->
+    <!--			<property name="pass">root</property>-->
+    <!--		</database>-->
+    <!--	</databases>-->
+    <databases>
+        <database name="sql">
+            <property name="driver">com.mysql.cj.jdbc.Driver</property>
+            <property name="url">jdbc:mysql://localhost:3306/clouddisk</property>
+            <property name="user">root</property>
+            <property name="pass">1126</property>
+        </database>
+    </databases>
+</config>
