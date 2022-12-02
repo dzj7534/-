@@ -8,9 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -33,8 +31,6 @@ public class BaseUtil {
 
     public void init(String filename) {
         try {
-            User usr = new User();
-
             InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename);
 
             Document doc = new SAXReader().read(is);
@@ -83,7 +79,6 @@ public class BaseUtil {
                 }
             }
             rs1 = stm1.executeQuery();//执行命令返回结果
-            System.out.println("rs1:"+rs1);
             //利用JAVA反射技术，将结果集ResultSet，映射到集合List<T>
             if (rs1 != null) {
                 list = new ArrayList<T>();
@@ -132,6 +127,7 @@ public class BaseUtil {
         }
         return list;
     }
+
 
 
     private void close(Connection conn, Statement stm, ResultSet rs) {

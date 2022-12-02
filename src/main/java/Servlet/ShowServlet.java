@@ -32,15 +32,17 @@ public class ShowServlet extends HttpServlet
 
             Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/schoolts","root","1126");
             Statement stmt=conn.createStatement();
-            String sql = "SELECT message.message_id,sort_id,content,state FROM message inner JOIN feedback on message.message_id = feedback.message_id";
+            String sql = "SELECT message.message_id,submission_time,content,state,meaning FROM message inner JOIN feedback on message.message_id = feedback.message_id INNER JOIN sort on sort.sort_id = message.sort_id\n";
             ResultSet rs = stmt.executeQuery(sql);
             JSONArray array = new JSONArray();
             while(rs.next()) {
                 JSONObject obj = new JSONObject();
                 obj.put("message_id",rs.getString("message_id"));
-                obj.put("sort_id",rs.getString("sort_id"));
+                obj.put("submission_time",rs.getString("submission_time"));
                 obj.put("content",rs.getString("content"));
                 obj.put("state",rs.getString("state"));
+                obj.put("meaning",rs.getString("meaning"));
+
 
                 array.add(obj);
             }
@@ -50,8 +52,8 @@ public class ShowServlet extends HttpServlet
             resp.setContentType("application/json; charset=utf-8");//返回的格式必须设置为application/json
             resp.getWriter().write(data);
 
-            rs.close();
             conn.close();
+            rs.close();
             stmt.close();
         } catch (ClassNotFoundException e1) {
             // TODO Auto-generated catch block

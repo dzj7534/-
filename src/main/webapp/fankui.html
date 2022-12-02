@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>投诉反馈查询</title>
+<link rel="stylesheet" type="text/css" href="./css/index.css"/>
+<link rel="stylesheet" type="text/css" href="./css/style_ej.css"/>
+<script type="text/javascript" src="./js/prototype.js"></script>
+<script>
+function search4result() {
+
+    if (document.getElementById("chaxuncode").value=="") {
+        alert("查询码不能为空");
+        return;
+    } 
+   // alert(0)
+    var url = "/bdcms/searchresult.do"
+    var paras = ''
+    paras = 'chaxuncode=' + document.getElementById("chaxuncode").value + '&yanzhengcode=' + document.getElementById("yanzhengcode").value + '&random=' + Math.random()
+    // alert(1)
+    var myajax = new Ajax.Request(
+        url,
+        { method: 'get', parameters: paras, onComplete: function (request) {
+            request.responseText.evalScripts()
+         
+         }
+       }
+    )
+ }
+
+function shouye() {
+    sessionStorage.removeItem('type');
+}
+</script>
+</head>
+
+<body>
+<!--头部-->
+<script>
+function AddFavorite() {
+
+var sTitle = "投诉反馈查询";
+var sUrl = "http://www.bj12380.gov.cn/";
+try {
+    window.external.addFavorite(sUrl, sTitle);
+}
+catch (e) {
+    try {
+        window.sidebar.addPanel(sTitle, sUrl, "");
+    }
+    catch (e) {
+        alert("抱歉，您所使用的浏览器无法完成此操作，请使用Ctrl+D进行添加");
+    }
+}
+
+}
+</script>
+<div class="had">
+<div class="ban">
+<div class="ban-bot">
+    <span class="ban-btn ban-l" style=" margin-left:70px">
+        <a href="/index.do">返回首页</a>
+    </span>
+    <span class="ban-btn ban-r" style=" margin-left:70px">
+        
+        <a href="#" onClick="AddFavorite()">收藏我们</a>
+    </span>
+</div>
+</div>
+</div>
+<!--内容-->
+<div class="con">
+<div class="center">
+<div class="jbxz_weizhi rightTit"><a onclick="shouye()" style="color:#fff; text-decoration:none;" href="/index.do">首页</a>><a style="color:#fff; text-decoration:none;" href="#">反馈查询</a></div>
+<div class="jbxz_nr">
+    <div class="jbxz_nrbt">反馈查询</div>
+    <table class="fkcx_txxx">
+        <tr>
+            <td width="64">查询码：</td>
+            <td><input type="text" id="chaxuncode" style=" line-height:30px;"></td>
+        </tr>
+        <tr>
+            <td>
+                
+                
+                <a style="cursor:pointer; text-decoration:none;margin-top:10px" onclick="search4result();" class="fkcx_but">反馈查询</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+<!--底部-->
+
+<!--底部-->
+
+<div class="bot" style=" text-align:center ; ">
+<div class="bot-con" style=" width:36%; text-align:center;">
+<p class="bot-con-t" style=" width:600px;">&nbsp;&nbsp;&nbsp;友情链接&nbsp;|&nbsp;<a href="http://www.12380.gov.cn"   target="_blank"  style="color:#a40009;">中共中央组织部12380</a>|&nbsp;<a href="http://www.bjdj.gov.cn/" target="_blank" style="color:#a40009;">北京组工</a></p>
+<div style=" width:560px;">
+    <div class="bot-con-b">
+        <a href="http://bszs.conac.cn/sitename?method=show&id=3390E2262F860171E053012819AC1EB2" target="_blank">
+            <img class="bot-con-l" src="./images/icon_02.png">
+        </a>
+        <div class="bot-con-r" style=" text-align: left;line-height:20px;">
+            <p>学校信息反馈</p>
+
+            <p>大学信息反馈查询 &nbsp;&nbsp;&nbsp; C7-101&102有限公司技术支持</p>
+            <p>地址：沈阳某大学</p>
+
+            <p>电话： 12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：100000</p>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+
+
+</body>
+</html>

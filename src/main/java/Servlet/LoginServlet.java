@@ -1,7 +1,8 @@
 package Servlet;
 
 import util.BaseUtil;
-import util.User;
+import util.account;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,22 +27,24 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         BaseUtil util = new BaseUtil();
-        String sql = "select * from cd_user where username=? and password=?";
-        List<User> list = util.getList(User.class, sql, username, password);
+        String sql = "select * from account where user_id=? and password=?";
+        List<account> list = util.getList(account.class, sql, username, password);
 
         if (list != null && list.size() > 0) {
-            User user = list.get(0);
-            if(user != null && username.equals(user.getUserName())){
+            account user = list.get(0);
+            if(user != null && Integer.parseInt(username) == user.getUser_id()){
                 HttpSession session=request.getSession();
                 session.setAttribute("user", user);
-                response.sendRedirect("/schoolTs_war_exploded/shouye.html");
-
-            }else{
-                response.sendRedirect("/schoolTs_war_exploded/login.html?error=yes");
+                String sort_id = user.getSort_id();
+                if(sort_id.equals("1")){
+                    response.sendRedirect("/schoolTs_war_exploded/shouye.html");
+                }else{
+                    response.sendRedirect("/schoolTs_war_exploded/show.html");
+                }
             }
 
         }else{
-            System.out.println("list 为空");
+            response.sendRedirect("/schoolTs_war_exploded/login.html");
         }
 
 
