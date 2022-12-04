@@ -2,6 +2,8 @@ package Servlet;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import util.BaseUtil;
+import util.MysqlUtil;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -28,11 +30,14 @@ public class ShowServlet extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/schoolts","root","1126");
+            BaseUtil util = new BaseUtil();
+            Connection conn= util.conn;
             Statement stmt=conn.createStatement();
-            String sql = "SELECT message.message_id,submission_time,content,state,meaning FROM message inner JOIN feedback on message.message_id = feedback.message_id INNER JOIN sort on sort.sort_id = message.sort_id\n";
+
+            String sort_id = LoginServlet.sort_id;
+
+
+            String sql = "SELECT message.message_id,submission_time,content,state,meaning FROM message inner JOIN feedback on message.message_id = feedback.message_id INNER JOIN sort on sort.sort_id = message.sort_id where message.sort_id = '"+sort_id+"' order by submission_time desc";
             ResultSet rs = stmt.executeQuery(sql);
             JSONArray array = new JSONArray();
             while(rs.next()) {
@@ -40,27 +45,38 @@ public class ShowServlet extends HttpServlet
                 obj.put("message_id",rs.getString("message_id"));
                 obj.put("submission_time",rs.getString("submission_time"));
                 obj.put("content",rs.getString("content"));
-                obj.put("state",rs.getString("state"));
+
+
+                String statusId = rs.getString("state");
+                String statusStr = "";
+                if(statusId.equals("1")){
+                    statusStr = "未处理";
+                }else if (statusId.equals("2")){
+                    statusStr = "处理中";
+                }else if (statusId.equals("3")){
+                    statusStr = "已完成";
+                }
+
+                obj.put("state",statusStr);
                 obj.put("meaning",rs.getString("meaning"));
 
 
                 array.add(obj);
             }
             String data = array.toString();
-            System.out.println(array);
             resp.setCharacterEncoding("utf-8");
             resp.setContentType("application/json; charset=utf-8");//返回的格式必须设置为application/json
+
             resp.getWriter().write(data);
 
             conn.close();
             rs.close();
             stmt.close();
-        } catch (ClassNotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 }
+
+

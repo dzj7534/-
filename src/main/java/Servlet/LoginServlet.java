@@ -16,6 +16,9 @@ import java.util.List;
 
 @WebServlet("/login.do")
 public class LoginServlet extends HttpServlet {
+
+    static String sort_id;
+    static int user_id;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
@@ -35,8 +38,10 @@ public class LoginServlet extends HttpServlet {
             if(user != null && Integer.parseInt(username) == user.getUser_id()){
                 HttpSession session=request.getSession();
                 session.setAttribute("user", user);
-                String sort_id = user.getSort_id();
-                if(sort_id.equals("1")){
+                sort_id = user.getSort_id();
+                user_id = user.getUser_id();
+                if(sort_id.equals("01")){
+
                     response.sendRedirect("/schoolTs_war_exploded/shouye.html");
                 }else{
                     response.sendRedirect("/schoolTs_war_exploded/show.html");

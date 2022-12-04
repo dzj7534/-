@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+  <title>Title</title>
+</head>
+<body>
+  <script>
+
+    $(document).ready(function() {
+      var jsondata={                                           //定义一个json对象，用于存储数据
+        "name" : "plane2",
+        "age" : 17
+      }
+      $.ajax({                                    //调用ajax发送数据
+        type:"get",                             //发送方式,post或者get
+        url:"test",                          //发送给后台的url声明
+        data:jsondata,                          //指定要发送给后台的数据
+
+      })
+    });
+
+    $(document).ready(function() {
+      var jsondata={                                           //定义一个json对象，用于存储数据
+        "name" : "plane",
+        "age" : 17
+      }
+      $.ajax({                                    //调用ajax发送数据
+        type:"get",                             //发送方式,post或者get
+        url:"test",                          //发送给后台的url声明
+        data:jsondata,                          //指定要发送给后台的数据
+
+      })
+    });
+
+
+
+
+  </script>
+</body>
+</html>

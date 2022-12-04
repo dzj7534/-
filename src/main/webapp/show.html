@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-      <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,58 +13,24 @@
 <div class="box">
     <h2 class="text-center">投诉信息处理</h2>
     <button href="" type="button" class="btn btn-sm btn-primary save" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 120px;">首页</button>
-    <table class="table table-striped table-hover data-grid">
-        <thead>
-        <th>
-        <td>单号</td>
-        <td>投诉时间</td>
-        <td>投诉类别</td>
-        <!-- <td></td>
-        <td></td>
-        <td></td> -->
-        <td>投诉内容</td>
-        <!-- <td></td>
-        <td></td>
-        <td></td> -->
-        <td>目前状态</td>
-        <td></td>
-        <td></td>
-        <td>功能</td>
+    <form  action="sutmitStatus" method="post">
+        <table class="table table-striped table-hover data-grid">
+            <thead>
+            <th>
+            <td>单号</td>
+            <td>投诉时间</td>
+            <td>投诉类别</td>
+            <td>投诉内容</td>
+            <td>办理状态</td>
+            <td>留言</td>
+            </th>
+            </thead>
+            <tbody id = "test">
 
-        </th>
-        </thead>
-        <tbody>
-        <!-- <tr>
-          <td></td>
-          <td>1</td>
-          <td>2022/11/22</td>
-          <td>人文生活</td>
-          <td>今天被按时付款就BASF哈是否合理卡了客户ask了沙发和理科按时发货尽</td>
-          <td>未处理</td>
-          <td></td>
-          <td></td>
-          <td>
-              <button class="btn btn-sm btn-success update" data-bs-toggle="modal" data-bs-target="#staticBackdrop">编辑</button>
-              <button class="btn btn-sm btn-danger">删除</button>
-          </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>1</td>
-        <td>2022/11/22</td>
-        <td>人文生活</td>
-        <td>飞洒发生阿三发射点发撒打发撒旦发射点发生大法师爱上飞洒地方撒旦阿斯顿萨达萨达萨达阿斯蒂芬撒旦发个爱给谁打非法打工按当时法国岁的法国</td>
-        <td>未处理</td>
-        <td></td>
-        <td></td>
-        <td>
-            <button class="btn btn-sm btn-success update" data-bs-toggle="modal" data-bs-target="#staticBackdrop">编辑</button>
-            <button class="btn btn-sm btn-danger">删除</button>
-        </td>
-    </tr>  -->
-        <tbody id="test">-->
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </form>
+
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
@@ -86,73 +52,66 @@
 
 <script src="./js/bootstrap.js"></script>
 <script>
+    var mes_id =0;
+
     $(document).ready(function() {
         $.ajax({
             url : "show",//后台请求的数据，用的是PHP
             dataType : "json",//数据格式
             type : "post",//请求方式
-            async : false,//false:同步   true:异步
+            async : false,
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success : function(data) {   //如果请求成功，返回数据。
                 console.log("前端请求后端成功，返回了数据");
                 var html = "";
                 for(var i=0;i<data.length;i++){    //遍历data数组
                     var ls = data[i];
-                    console.log(ls.message_id);
                     html +=
                         "<tr>"
                         +"<td>"+"</td>"//空
+                        // +'<td>'+'<input name = "message_id" id = "message_id" value = ls.message_id>'+"</td>"//单号
+                        +"<td>"+ls.message_id+"</td>"//投诉时间
 
-                        +"<td>"+ls.message_id+"</td>"//单号
                         +"<td>"+ls.submission_time+"</td>"//投诉时间
                         +"<td>"+ls.meaning+"</td>"//投诉类别
                         +"<td>"+ls.content+"</td>"//投诉内容
-                        +"<td>"+ls.state+"</td>"//目前状态
-                        +"<td>"+"</td>"//空
                         +"<td>"+
-                        '<button class="btn btn-sm btn-success update" data-bs-toggle="modal" data-bs-target="#staticBackdrop">编辑</button> '
-                        +
-                        '<button class="btn btn-sm btn-danger">删除</button>'
-                        +
+                        '     <select name="state" id = "state">' +
+                        '         <option>未处理</option>' +
+                        '         <option>办理中</option>' +
+                        '         <option>已完成</option>' +
+                        '      </select> ' +
                         "</td>"
+                        +"<td>"+'<input name="liuyan" id="liuyan" />'+"</td>"
+                        +"<td>"+'<input type="submit" class="btn btn-sm btn-danger" value="提&nbsp;&nbsp;&nbsp;&nbsp;交" οnclick='+submitForm(ls.message_id)+'>'
+                        +"</td>"
                     "</tr>";
 
                 }
                 $("#test").html(html); //在html页面id=test的标签里显示html内容
             },
-        })
+        });
+
     });
-    // $.ajax({
-    //   url:"http://localhost:8080/**********/ajax",
-    //   dataType:"jsonp",
-    //   method:"GET",
-    //   data:{
-    //     method:"findAll"
-    //   },
-    //   success:function(data){
-    //     var tbody= $("tbody");
-    //     console.log(tbody)
-    //     $(data).each(function(index,elem) {
-    //       var template=`
-    //           <tr>
-    //               <td></td>
-    //               <td></td>
-    //               <td></td>
-    //               <td></td>
-    //               <td></td>
-    //               <td></td>
-    //               <td></td>
-    //               <td></td>
-    //               <td>上传</td>
-    //               <td>
-    //                   <button class="btn btn-sm btn-success update" data-bs-toggle="modal" data-bs-target="#staticBackdrop">编辑</button>
-    //                   <button class="btn btn-sm btn-danger">删除</button>
-    //               </td>
-    //           </tr>
-    //       `;
-    //       tbody.append(template)
-    //     })
-    //   }
-    // });
+//οnclick=submitForm(ls.message_id)
+    $(document).ready(function() {
+        var jsondata={                                           //定义一个json对象，用于存储数据
+            "message_id" : mes_id,
+        }
+        console.log("message_id"+mes_id)
+        $.ajax({                                    //调用ajax发送数据
+            type:"get",
+            url:"sutmitStatus",                          //发送给后台的url声明
+            data:jsondata,
+            async : false,
+
+        });
+    });
+
+    function submitForm(message_idStr){
+        mes_id = message_idStr;
+    }
 </script>
+
 </body>
 </html>

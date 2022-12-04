@@ -1,84 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:background-size="http://www.w3.org/1999/xhtml">
 
-<link rel="stylesheet" type="text/css" href="./css/login.css">
-<script type="text/javascript" src="./js/login.js"></script>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
-      body {
-        background-color: rgb(235, 235, 235);
-      }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
 
-      form {
-        width: 400px;
-        height: 320px;
-        background-color: white;
-        padding: 20px;
-        box-sizing: border-box;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        /* 相对于现在所处位置的位移变化，x便偏移自己宽度的50%，y偏移自己高度的50% */
-      }
+  </style>
+</head>
 
-      h2 {
-        margin-bottom: 20px;
-        text-align: center;
-      }
+<body>
+<section>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="box">
+    <!-- 背景圆 -->
+    <div class="circle" style="--x:0"></div>
+    <div class="circle" style="--x:1"></div>
+    <div class="circle" style="--x:2"></div>
+    <div class="circle" style="--x:3"></div>
+    <div class="circle" style="--x:4"></div>
+    <div class="container">
+      <div class="form">
+        <form action="login.do" method="post">
 
-      form input {
-        width: 100%;
-        height: 30px;
-        display: block;
-        margin-bottom: 20px;
-        padding-left: 10px;
-        box-sizing: border-box;
-      }
 
-      .mya {
-        width: 100%;
-        height: 30px;
-        margin-bottom: 20x;
-      }
+          <h2>校园信息投诉系统</h2>
+          <div class="inputBox">
 
-      .mya a:nth-child(1) {
-        float: left;
-      }
+            <input name="username" id="username" type="text" placeholder="请输入账号">
+          </div>
+          <div class="inputBox">
+            <input name="password"  id="password" type="text" placeholder="请输入密码">
+          </div>
+          <p class="forget">忘记密码?<a href="#">
+            点击这里
+          </a></p>
+          <p class="forget">没有账户?<a href="#">
+            注册
+          </a></p>
+          <div class = "inputBox">
+            <input id = "login-btn" type="submit" value="登录">
+          </div>
+        </form>
 
-      .mya a:nth-child(2) {
-        float: right;
-      }
+        <!--
+            js引入方式：
+            1、写在body标签里面，通过script包起来
+            2、引入外部js文件  再通过script的src属性引入进来
+        -->
 
-      button {
-        width: 100%;
-        height: 40px;
-        background-color: rgb(235, 235, 235);
-        border: none;
-      }
+        <script>
+          // let 定义一个变量
+          let username = document.getElementById('username')
+          let password = document.getElementById('password')
+          let loginBtn = document.getElementById('login-btn')
+          // js里面不允许出现 -
 
-      button:active {
-        box-shadow: 0 0 3px rgb(173, 172, 172);
-        /* x偏移  y偏移  模糊值 颜色 */
-      }
-    </style>
-  </head>
+          //一般的交互事件
+          // onclick 点击事件
+          // onmousemove  鼠标移入事件
+          // onmouseout  鼠标移出事件
+          // ondblclick  双击事件
+          // onfocus  input框获取焦点事件
+          // onblur  失焦事件
 
-  <body>
-    <form action="login.do" method="post" onsubmit="return checkLoad()">
-      <h2>登录界面</h2>
-      <input name="username" id="username" type="text" placeholder="账号/邮箱/用户名" class="ip" />
-      <input name="password" id="password" type="password" placeholder="密码" class="ip" />
-      <input type="submit" value="登&nbsp;&nbsp;&nbsp;&nbsp;录">
-    </form>
-  </body>
+
+          // loginBtn.onclick = function() {
+          //   let usernamevalue = username.value
+          //   let passwordvalue = password.value
+          //   // console.log(usernamevalue, passwordvalue)
+          //   // 便于检查的时候判断是否成功
+          //   if (!usernamevalue) {
+          //     return alert('请输入正确的用户名')
+          //     //return 跳出当前函数，并且返回后面的值
+          //   }
+          //   console.log(usernamevalue, passwordvalue)
+          //
+          // }
+
+          function Login(){
+            var username=$.trim($("#username").val());//获取用户名trim是去掉空格
+            var password=$.trim($("#password").val());//获取密码
+            if(username==""||password==""){
+              return alert("用户名或者密码错误!",{
+                title:"提示",
+                icon:5,
+              });
+            }
+          }
+          Login();
+
+        </script>
+
+
+
+      </div></div></div>
+</section>
+</body>
+
 
 </html>

@@ -2,12 +2,7 @@ package util;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 import org.dom4j.Document;
@@ -24,9 +19,14 @@ public class BaseUtil {
     public Connection conn;
     public PreparedStatement stm;
     public ResultSet rs;
+    public PreparedStatement pstmt = null;
+    public ResultSet resultSet = null;
+
 
     public BaseUtil() {
         this.init("database.cfg.xml");
+
+
     }
 
     public void init(String filename) {
@@ -52,6 +52,17 @@ public class BaseUtil {
                 } else if (name.equals("pass")) {
                     PASS = resultElement.getText();
                 }
+            }
+
+            try {
+                // 指定连接类型
+                Class.forName(DRIVER);
+
+                // 获取连接
+                conn = (Connection) DriverManager.getConnection(URL, USER, PASS);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         } catch (Exception e) {
@@ -150,6 +161,93 @@ public class BaseUtil {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+
+    public int queryCount(String sql,List<Object> params) throws SQLException{
+        int count = 0;
+        int index = 1;
+        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+        if (params != null && !params.isEmpty()) {
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(index++, params.get(i));
+            }
+        }
+        // 返回查询结果
+        resultSet= pstmt.executeQuery();
+        count  = resultSet.getFetchSize();
+        return count;
+    }
+    public Map<String, Object> queryOne(String sql, List<Object> params) throws SQLException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int index = 1;
+        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+        if (params != null && !params.isEmpty()) {
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(index++, params.get(i));
+            }
+        }
+        resultSet = pstmt.executeQuery();// 返回查询结果
+        ResultSetMetaData metaData = resultSet.getMetaData();
+        int col_len = metaData.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 0; i < col_len; i++) {
+                String cols_name = metaData.getColumnName(i + 1);
+                Object cols_value = resultSet.getObject(cols_name);
+                if (cols_value == null) {
+                    cols_value = "";
+                }
+                map.put(cols_name, cols_value);
+            }
+        }
+        return map;
+    }
+
+    public void insertData(String sql, List<Object> params) throws SQLException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int index = 1;
+        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+        if (params != null && !params.isEmpty()) {
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(index++, params.get(i));
+            }
+        }
+        pstmt.executeUpdate();
+    }
+
+    public List<Map<String, Object>> queryMore(String sql, List<Object> params) throws SQLException {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        int index = 1;
+        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+        if (params != null && !params.isEmpty()) {
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(index++, params.get(i));
+            }
+        }
+        resultSet = pstmt.executeQuery();
+        ResultSetMetaData metaData = resultSet.getMetaData();
+
+        int cols_len = metaData.getColumnCount();
+        while (resultSet.next()) {
+            Map<String, Object> map = new HashMap<String, Object>();
+            for (int i = 0; i < cols_len; i++) {
+                String cols_name = metaData.getColumnName(i + 1);
+                Object cols_value = resultSet.getObject(cols_name);
+                if (cols_value == null) {
+                    cols_value = "";
+                }
+                map.put(cols_name, cols_value);
+            }
+            list.add(map);
+        }
+        return list;
+    }
+
+
+    protected void finalize() throws Throwable {
+        super.finalize();
+        conn.close();
     }
 
 

@@ -1,122 +1,126 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>投诉反馈查询</title>
-<link rel="stylesheet" type="text/css" href="./css/index.css"/>
-<link rel="stylesheet" type="text/css" href="./css/style_ej.css"/>
-<script type="text/javascript" src="./js/prototype.js"></script>
-<script>
-function search4result() {
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
-    if (document.getElementById("chaxuncode").value=="") {
-        alert("查询码不能为空");
-        return;
-    } 
-   // alert(0)
-    var url = "/bdcms/searchresult.do"
-    var paras = ''
-    paras = 'chaxuncode=' + document.getElementById("chaxuncode").value + '&yanzhengcode=' + document.getElementById("yanzhengcode").value + '&random=' + Math.random()
-    // alert(1)
-    var myajax = new Ajax.Request(
-        url,
-        { method: 'get', parameters: paras, onComplete: function (request) {
-            request.responseText.evalScripts()
-         
-         }
-       }
-    )
- }
-
-function shouye() {
-    sessionStorage.removeItem('type');
-}
-</script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
 </head>
-
 <body>
-<!--头部-->
-<script>
-function AddFavorite() {
-
-var sTitle = "投诉反馈查询";
-var sUrl = "http://www.bj12380.gov.cn/";
-try {
-    window.external.addFavorite(sUrl, sTitle);
-}
-catch (e) {
-    try {
-        window.sidebar.addPanel(sTitle, sUrl, "");
-    }
-    catch (e) {
-        alert("抱歉，您所使用的浏览器无法完成此操作，请使用Ctrl+D进行添加");
-    }
-}
-
-}
-</script>
-<div class="had">
-<div class="ban">
-<div class="ban-bot">
-    <span class="ban-btn ban-l" style=" margin-left:70px">
-        <a href="/index.do">返回首页</a>
-    </span>
-    <span class="ban-btn ban-r" style=" margin-left:70px">
-        
-        <a href="#" onClick="AddFavorite()">收藏我们</a>
-    </span>
-</div>
-</div>
-</div>
-<!--内容-->
-<div class="con">
-<div class="center">
-<div class="jbxz_weizhi rightTit"><a onclick="shouye()" style="color:#fff; text-decoration:none;" href="/index.do">首页</a>><a style="color:#fff; text-decoration:none;" href="#">反馈查询</a></div>
-<div class="jbxz_nr">
-    <div class="jbxz_nrbt">反馈查询</div>
-    <table class="fkcx_txxx">
-        <tr>
-            <td width="64">查询码：</td>
-            <td><input type="text" id="chaxuncode" style=" line-height:30px;"></td>
-        </tr>
-        <tr>
+<div class="box">
+    <h2 class="text-center">诉求信息</h2>
+    <button href="" type="button" class="btn btn-sm btn-primary save" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 120px;">首页</button>
+    <form  action="pingfen" method="post">
+        <table class="table table-striped table-hover data-grid">
+            <thead>
+            <th>
+            <td>单号</td>
+            <td>投诉时间</td>
+            <td>投诉类别</td>
+            <td>投诉内容</td>
+            <td>目前状态</td>
+            <td>工作人员留言</td>
+            <td>评分(10分制)</td>
+            <td></td>
             <td>
-                
-                
-                <a style="cursor:pointer; text-decoration:none;margin-top:10px" onclick="search4result();" class="fkcx_but">反馈查询</a>
             </td>
-        </tr>
-    </table>
-</div>
-</div>
-</div>
-<!--底部-->
+            </th>
+            </thead>
+            <tbody>
 
-<!--底部-->
+            <tbody id="test">
 
-<div class="bot" style=" text-align:center ; ">
-<div class="bot-con" style=" width:36%; text-align:center;">
-<p class="bot-con-t" style=" width:600px;">&nbsp;&nbsp;&nbsp;友情链接&nbsp;|&nbsp;<a href="http://www.12380.gov.cn"   target="_blank"  style="color:#a40009;">中共中央组织部12380</a>|&nbsp;<a href="http://www.bjdj.gov.cn/" target="_blank" style="color:#a40009;">北京组工</a></p>
-<div style=" width:560px;">
-    <div class="bot-con-b">
-        <a href="http://bszs.conac.cn/sitename?method=show&id=3390E2262F860171E053012819AC1EB2" target="_blank">
-            <img class="bot-con-l" src="./images/icon_02.png">
-        </a>
-        <div class="bot-con-r" style=" text-align: left;line-height:20px;">
-            <p>学校信息反馈</p>
+            </tbody>
+        </table>
+    </form>
 
-            <p>大学信息反馈查询 &nbsp;&nbsp;&nbsp; C7-101&102有限公司技术支持</p>
-            <p>地址：沈阳某大学</p>
-
-            <p>电话： 12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：100000</p>
-        </div>
-    </div>
-</div>
-</div>
-
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
+<script src="./js/bootstrap.js"></script>
+<script>
+    var message_id = 0;
 
+    $(document).ready(function() {
+        $.ajax({
+            url : "showStu",//后台请求的数据，用的是PHP
+            dataType : "json",//数据格式
+            type : "post",//请求方式
+            async : false,//false:同步   true:异步
+            success : function(data) {   //如果请求成功，返回数据。
+                console.log("前端请求后端成功，返回了数据");
+                var html = "";
+                for(var i=0;i<data.length;i++){    //遍历data数组
+                    var ls = data[i];
+                    message_id = ls.message_id
+                    var words = ls.words;
+
+                    if(typeof ls.words =="undefined"){
+                        words = "目前未留言";
+                    }
+                    console.log(ls.message_id);
+                    html +=
+                        "<tr>"
+                        +"<td>"+"</td>"//空
+
+                        +"<td>"+ls.message_id+"</td>"//单号
+                        +"<td>"+ls.submission_time+"</td>"//投诉时间
+                        +"<td>"+ls.meaning+"</td>"//投诉类别
+                        +"<td>"+ls.content+"</td>"//投诉内容
+                        +"<td>"+ls.state+"</td>"//目前状态
+                        +"<td>"+words+"</td>"//留言
+                        +"<td>"+
+                        '<input name = "pingfen" id = "pingfen" size="2">'
+                        +"</td>"
+                        +"<td>"+'<input type="submit" class="btn btn-sm btn-danger" value="提&nbsp;&nbsp;&nbsp;&nbsp;交">'
+                        +"</td>"+
+
+                        "</tr>";
+
+                }
+                $("#test").html(html); //在html页面id=test的标签里显示html内容
+            },
+        })
+    });
+
+    $(document).ready(function(){
+        var jsondata={                                           //定义一个json对象，用于存储数据
+            "message_id" : message_id,
+        }
+        console.log("message_id---"+message_id)
+        $.ajax({                                    //调用ajax发送数据
+            type:"get",
+            url:"pingfen",                          //发送给后台的url声明
+            data:jsondata,
+            async : false,
+            // success:function () {               //发送成功并且成功获得后台响应的时候，
+            //     alert(message_id+"成功"); //执行的操作
+            // },
+            // error:function () {                    //发送失败了该执行的操作
+            //     alert("发生未知错误");
+            // }
+        });
+    });
+
+</script>
 </body>
 </html>

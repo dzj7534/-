@@ -19,21 +19,21 @@ public class loginTest {
 //        List<account> list = bs.getList(account.class, sql, username, password);
 //        System.out.println(list.size());
 
-        int xuehao = 2;
-        String wtfl = "df";
-        String zywt = "dfdfdf";
         MysqlUtil util = new MysqlUtil();
-        List<Object> list = new ArrayList<>();
-        list.add(xuehao);
-        list.add(new Date());
-        list.add(wtfl);
-        list.add(zywt);
 
+        List<Object> list = new ArrayList<>();
+
+        list.add(3);
+        list.add("你好");
+        list.add(3);
+
+        System.out.println(list);
         try {
-            util.insertData("INSERT INTO message(user_id,submission_time,sort_id,content)VALUES(?,?,?,?)",list);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            util.insertData("UPDATE feedback set state = ? and words = ? where message_id = ?",list);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 
 }
