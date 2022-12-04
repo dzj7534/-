@@ -1,7 +1,6 @@
 package Servlet;
 
 import util.BaseUtil;
-import util.MysqlUtil;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

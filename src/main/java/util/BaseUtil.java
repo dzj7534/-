@@ -24,9 +24,8 @@ public class BaseUtil {
 
 
     public BaseUtil() {
+        //初始化配置文件
         this.init("database.cfg.xml");
-
-
     }
 
     public void init(String filename) {
@@ -125,6 +124,7 @@ public class BaseUtil {
         return list;
     }
 
+    //java反射技术
     private List<Method> matchPojoMethods(Method[] methods, String methodName) {
 
         // List容器存放所有带get字符串的Method对象
@@ -154,9 +154,7 @@ public class BaseUtil {
             if (conn != null) {
                 conn.close();
                 conn = null;
-                // Connection connection = ThreadUtil.getConnectionThreadLocal()
-                // .get();
-                // ThreadUtil.getConnectionThreadLocal().remove();
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,20 +163,6 @@ public class BaseUtil {
 
 
 
-    public int queryCount(String sql,List<Object> params) throws SQLException{
-        int count = 0;
-        int index = 1;
-        pstmt = (PreparedStatement) conn.prepareStatement(sql);
-        if (params != null && !params.isEmpty()) {
-            for (int i = 0; i < params.size(); i++) {
-                pstmt.setObject(index++, params.get(i));
-            }
-        }
-        // 返回查询结果
-        resultSet= pstmt.executeQuery();
-        count  = resultSet.getFetchSize();
-        return count;
-    }
     public Map<String, Object> queryOne(String sql, List<Object> params) throws SQLException {
         Map<String, Object> map = new HashMap<String, Object>();
         int index = 1;
@@ -216,33 +200,6 @@ public class BaseUtil {
         pstmt.executeUpdate();
     }
 
-    public List<Map<String, Object>> queryMore(String sql, List<Object> params) throws SQLException {
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        int index = 1;
-        pstmt = (PreparedStatement) conn.prepareStatement(sql);
-        if (params != null && !params.isEmpty()) {
-            for (int i = 0; i < params.size(); i++) {
-                pstmt.setObject(index++, params.get(i));
-            }
-        }
-        resultSet = pstmt.executeQuery();
-        ResultSetMetaData metaData = resultSet.getMetaData();
-
-        int cols_len = metaData.getColumnCount();
-        while (resultSet.next()) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            for (int i = 0; i < cols_len; i++) {
-                String cols_name = metaData.getColumnName(i + 1);
-                Object cols_value = resultSet.getObject(cols_name);
-                if (cols_value == null) {
-                    cols_value = "";
-                }
-                map.put(cols_name, cols_value);
-            }
-            list.add(map);
-        }
-        return list;
-    }
 
 
     protected void finalize() throws Throwable {

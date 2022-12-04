@@ -3,7 +3,6 @@ package Servlet;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import util.BaseUtil;
-import util.MysqlUtil;
 
 import java.io.IOException;
 import java.sql.Connection;
